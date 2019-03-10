@@ -1,0 +1,7 @@
+echo CLASS ID SEQ N_READS OG_LEN COV OG_LEV OG_PID MASH_CLASSIFICATIONS MASH_SCORES MASH_PIDS VAPOR_CLASSIFICATIONS VAPOR_SCORES VAPOR_PIDS BLAST_CLASSIFICATIONS BLAST_SCORES BLAST_PIDS
+for f in results/*; do
+    dline=$(tail -1 $f)
+    x=${f#*.}
+    cls=${x%.*}
+    echo $cls $dline
+done

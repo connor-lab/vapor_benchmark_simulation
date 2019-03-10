@@ -1,0 +1,33 @@
+SUMMARY
+
+This folder is a package that contains scripts and files required for running one experiment: BLAST, MASH, and VAPOR simulated read classification.
+
+REQUIREMENTS
+
+    Python3.x
+    BLAST (makeblastdb, blastn) 2.7.1+
+    MASH 2.0
+    VAPOR v1.0+
+    GNU parallel 20160222
+
+Additionally, artificialFastqGenerator (afg) v1.0.0 must be placed in code/afg
+
+Additionally, the following resources are required:
+
+refs/: a set of used resources with accompanying MASH sketch and BLAST databases:
+    HA_A_allsp_nfu_nospaces.fa
+
+These can be downloaded from https://s3.climb.ac.uk/vapor-benchmark-data/benchmarking_simulation_refs_06_03_19.tar.gz
+
+For plotting, pandas 0.23.4, matplotlib 2.2.3, NumPy 1.15.2, and seaborn 0.9.0 are required.
+
+USAGE
+
+Run the benchmarks with N processes:
+
+    parallel --jobs N < code/parallel_commands/simulate_and_classify_commands.pcom.sh > logs/simulate_and_classify_commands.log 2>&1
+
+Collect and plot the results with:
+
+    bash code/retrieve_results.sh > results.csv
+    python3 plotting/plot_simulation_boxes.py results.csv
